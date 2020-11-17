@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} Account {% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container" style=" margin10%; padding:5%; background-color:#000000; position:relative;">
+<div class="row">
+  <div class="col-lg-12 mb-3">
+    <br>
+    <h4 class="text-center text-light">Account Google</h4>
+  </div>
+
+      <!-- Add from here -->
+  {% for ass in backends.associated %}
+    {% if ass.provider == 'google-oauth2' %}
+      <div class="col-12 col-md-6">
+        <img src="{% static 'image/google.png' %}" alt="" width="400" height="400">
+      </div>
+      <div class="col-4 social-container mb-2 text-light">
+          <p> Provider:  {{ ass.provider }} </p>
+          <p> Username:  {{ass.user.last_name}} {{ass.user.first_name}}</p>
+          <p> email:<a  href="https://myaccount.google.com/?utm_source=OGB&tab=wk&utm_medium=act">{{ass.uid}}<a> </p>
+      </div>
+    {% endif %}
+  {% endfor %}
+  <div class="col-sm-12 mt-2 text-center text-light">
+    <a href="{% url 'logout' %}">
+    <button class="btn btn-danger ">Logout</button>
+    </a>
+    <a href="{% url 'myapp:index' %}">
+    <button class="btn btn-primary">Home</button>
+    </a>
+  </div>
+      <!-- End here -->
+</div>
+</div>
+
+<style media="screen">
+  .social-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.btn a, .btn a:hover {
+  color: white;
+  text-decoration: none ;
+}
+</style>
+{% endblock %}

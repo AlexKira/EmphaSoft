@@ -1,0 +1,44 @@
+{% extends 'home.html' %}
+{% block title %} Forms {% endblock %}
+{% load static %}
+
+{% block content %}
+
+<div class="container bg-dark">
+  <div class="row" style="margin:10%;padding:0;">
+    <div class="col-12">
+
+    <form method="post" enctype="multipart/form-data" style="margin-top:5%;padding:0;">
+
+      {% if img %}
+        {% csrf_token %}
+        <div class="alert alert-primary" role="alert">
+          Your account history has been updated!
+        </div>
+      {% endif %}
+
+  {% if form %}
+  {% csrf_token %}
+  <input class="form-control mb-3" placeholder="Input your Usename"{{form.uname }}
+  <input class="form-control mb-3" placeholder="Input your Usename"{{ form.form.uname }}
+  <input class="form-control mb-3" placeholder="Input your age"{{form.age}}
+  <input class="form-control mb-3" placeholder="Input your Gender"{{form.gender}}
+  <input class="form-control mb-3" placeholder="Input your About me"{{form.about_me}}
+  <input class="form-control mb-3" placeholder="Upload avatar"{{form.image}}
+
+  <button class="btn btn-light type="submit">Update</button>
+
+  {% endif %}
+
+</form>
+<br>
+
+
+<a href="{% url 'myapp:index' %}" >
+  <button class="btn btn-danger mb-2">Home</button>
+</a>
+
+</div>
+</div>
+</div>
+{% endblock %}

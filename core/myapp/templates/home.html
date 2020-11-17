@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row-12" >
+
+  <nav class="navbar navbar-dark bg-dark"  style = " height:10ex;">
+    <a href="{% url 'myapp:index' %}">
+      <button class="btn btn-danger ">Home</button>
+    </a>
+    <a href="{% url 'forms:forms' %}">
+      <button class="btn btn-warning ">Input My Account</button>
+    </a>
+
+      <a href="{% url 'myapp:account' %}">
+        <button class="btn btn-primary ">My Account Google</button>
+      </a>
+  </nav>
+</div>
+
+
+<div class="container bg-dark"
+
+ style='margin-top:2em;padding:2px; position:relative; display:block;'>
+
+ <div class="row-12" >
+   <br>
+   <h3><p class = "text-center text-light">My History Account</p></h3>
+    <div class="card" style="width: 40rem; margin:0 auto; padding:2px; position:relative; display:block;">
+
+
+        {% for names in names  %}
+          <br>
+          <img class="  {% if names.image %}card-img-top border border-dark" src="{{ names.image.url}}  {% endif %}" alt="Card image cap">
+            <div class="card-body">
+
+              <p class="card-text text-center text-light bg-dark">Usename: {{ names.uname}}</p>
+              <p class="card-text text-center text-light bg-dark" >Gender: {{ names.gender}}</p>
+              <p class="card-text text-center text-light bg-dark">Age: {{ names.age}}</p>
+              <p class="card-text text-center text-light bg-dark">About me: {{ names.about_me}}</p>
+
+            </div>
+
+        {% endfor %}
+      </div>
+    </div>
+</div>
+
+
+{% endblock %}
